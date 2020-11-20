@@ -9,7 +9,9 @@ import "./libraries/SafeMath.sol";
 import "./libraries/TitanSwapV1Library.sol";
 
 interface ITitanSwapV1LimitOrder {
-    // event Transfer(address indexed from, address indexed to, uint value);
+
+     event Transfer(address indexed from, address indexed to, uint value);
+
      event Deposit(uint orderId,address indexed pair,address indexed user,uint amountIn,uint amountOut,uint fee);
     
      function setDepositAccount(address) external;
