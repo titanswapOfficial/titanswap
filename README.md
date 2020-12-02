@@ -10,7 +10,7 @@ In-depth documentation on TitanSwap V1 is available at [titanSwap.org](https://t
 - TitanSwapV1Factory - https://etherscan.io/address/0xdd8320eae12c5a2fd94986e54fd1020c0e238f41  (Updated October 28, 2020)
 - TitanSwapV1Router01 - https://etherscan.io/address/0x6f6aE85DfA2Fb54a68238f1C40DD2c8Efb4eC4dB (Updated October 28, 2020)
 - TitanLimitOrder - https://etherscan.io/address/0xc4B46a1892c1548913Ca18Ef61D6c9d886b3D7ED (Updated October 28, 2020)
-- TitanFeeMaker - https://etherscan.io/address/0xaf2cb728313910DC7e0F0aeB8A66035D13283CB9 (Updated November 25, 2020)
+- TitanFeeMaker - https://etherscan.io/address/0x2459197966cf90f4092378A89f06921400a4c3b2 (Updated December 2, 2020)
 
 
 ## License
