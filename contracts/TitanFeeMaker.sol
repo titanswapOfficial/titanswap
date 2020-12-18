@@ -134,7 +134,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
     }
 
 
-
+    // convert lp of fee contract into titan.
     function convertLpToTitan(ITitanSwapV1Pair _pair,uint256 _feeLpBalance) private returns(uint256){
 
         uint256 beforeTitan = IERC20(titan).balanceOf(address(this));
@@ -185,6 +185,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
         return 0;
     }
 
+    // convert token to usdt if token/usdt pair is exist.
     function _toUSDT(address token) private returns (uint256) {
         if(token == usdt || token == titan) {
             return 0;
@@ -200,6 +201,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
         return swapTokenForWethOrUsdt(token,token0,pair,reserveIn,reserveOut);
     }
 
+    // convert token to weth if token/weth pair is exist.
     function _toWETH(address token) private returns (uint256) {
         if(token == weth || token == titan) {
             return 0;
@@ -215,6 +217,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
         return swapTokenForWethOrUsdt(token,token0,pair,reserveIn,reserveOut);
     }
 
+    // swap token for usdt or weth,like router contract swap method.
     function swapTokenForWethOrUsdt(address token,address token0,ITitanSwapV1Pair pair,uint reserveIn,uint reserveOut) private returns (uint256) {
         // contract token balance
         uint amountIn = IERC20(token).balanceOf(address(this));
@@ -229,6 +232,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
         return amountOut;
     }
 
+    // convert weth into titan, use the price of titan/weth pair.
     function _wethToTitan(uint256 amountIn) internal view returns (uint256) {
         ITitanSwapV1Pair pair = ITitanSwapV1Pair(factory.getPair(titan,weth));
         require(address(pair) != address(0),'TitanSwapV1FeeMaker: titan/eth not exist');
@@ -238,6 +242,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
         return reserveOut.mul(amountIn).div(reserveIn);
     }
 
+    // convert usdt into titan, use the price of titan/usdt pair.
     function _usdtToTitan(uint256 amountIn) internal view returns (uint256) {
         ITitanSwapV1Pair pair = ITitanSwapV1Pair(factory.getPair(titan,usdt));
         require(address(pair) != address(0),'TitanSwapV1FeeMaker: titan/usdt not exist');
@@ -247,6 +252,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
         return reserveOut.mul(amountIn).div(reserveIn);
     }
 
+    // withraw eth ,only execute by admin.
     function withdrawETH(address to) external override onlyOwner{
         uint256 wethBalance = IERC20(weth).balanceOf(address(this));
         // require(wethBalance > 0,'TitanSwapV1FeeMaker: weth amount == 0');
@@ -255,22 +261,26 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
         // TransferHelper.safeTransfer(weth,to,wethBalance);
     }
 
+    // withraw usdt ,only execute by admin.
     function withdrawUSDT(address to) external override onlyOwner{
         uint256 usdtBalance = IERC20(usdt).balanceOf(address(this));
         require(usdtBalance > 0,'TitanSwapV1FeeMaker: usdt amount == 0');
         TransferHelper.safeTransfer(usdt,to,usdtBalance);
     }
 
+    // charge titan for fee used.
     function chargeTitan(uint256 _amount) external override {
         TransferHelper.safeTransferFrom(titan,msg.sender,address(this),_amount);
     }
 
+     // withraw titan ,only execute by admin.
     function withdrawTitan(uint256 _amount) external override onlyOwner {
         uint256 balance = IERC20(titan).balanceOf(address(this));
         require(balance >= _amount,'balance not enough');
         TransferHelper.safeTransfer(titan,msg.sender,_amount);
     }
 
+    // adjust titan fee reward rate, now is 0.4%
     function adjustTitanBonus(uint256 _BONUS_MULTIPLIER) external override onlyOwner {
         require(_BONUS_MULTIPLIER >= 100,'number must >= 100');
         BONUS_MULTIPLIER = _BONUS_MULTIPLIER;
