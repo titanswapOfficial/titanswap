@@ -13,19 +13,21 @@ interface ITitanSwapV1LimitOrder {
      event Transfer(address indexed from, address indexed to, uint value);
 
      event Deposit(uint orderId,address indexed pair,address indexed user,uint amountIn,uint amountOut,uint fee);
-    
+     // set deposit account address
      function setDepositAccount(address) external;
      function depositExactTokenForTokenOrder(address sellToken,address pair,uint amountIn,uint amountOut) external payable; 
      // deposit swapExactEthForTokens
      function depositExactEthForTokenOrder(address pair,uint amountIn,uint amountOut) external payable;
       // deposit swapExactTokenForETH
      function depositExactTokenForEth(address sellToken,address pair,uint amountIn,uint amountOut) external payable;
-     
+     // cancel limit order by orderId
      function cancelTokenOrder(uint orderId) external; 
    
-     
+     // execute by swap exact token for token
      function executeExactTokenForTokenOrder(uint orderId, address[] calldata path, uint deadline) external;
+     // execute by swap exact eth for token
      function executeExactETHForTokenOrder(uint orderId, address[] calldata path, uint deadline) external payable;
+     // execute by swap exact token for eth
      function executeExactTokenForETHOrder(uint orderId, address[] calldata path, uint deadline) external;
       
      
