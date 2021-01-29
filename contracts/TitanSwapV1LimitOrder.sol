@@ -32,10 +32,13 @@ interface ITitanSwapV1LimitOrder {
      // execute by swap exact token for eth
      function executeExactTokenForETHOrder(uint orderId, address[] calldata path, uint deadline) external;
       
-     
+     // query executing limit order
      function queryOrder(uint orderId) external view returns(address,address,uint,uint,uint);
+     // check limit order whether exist
      function existOrder(uint orderId) external view returns(bool);
+     // withdraw eth fee, only operation by admin
      function withdrawFee(address payable to) external;
+     // set execute limit order fee
      function setEthFee(uint _ethFee) external;
 }
 
