@@ -4,6 +4,8 @@ Core smart contracts of TitanSwap V1.
 
 In-depth documentation on TitanSwap V1 is available at [titanSwap.org](https://titanSwap.org).
 
+titanSwap V2 is coming soon.
+
 ## Deployed Contracts / Hash
 
 - TitanToken - https://etherscan.io/token/0x3A8cCCB969a61532d1E6005e2CE12C200caeCe87
