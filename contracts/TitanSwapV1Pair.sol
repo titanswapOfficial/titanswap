@@ -17,7 +17,7 @@ contract TitanSwapV1Pair is TitanSwapV1ERC20 {
     uint public constant MINIMUM_LIQUIDITY = 10**3;
     bytes4 private constant SELECTOR = bytes4(keccak256(bytes('transfer(address,uint256)')));
 
-    address public factory;
+    address public factory;             // titan factory address
     address public token0;
     address public token1;
 
