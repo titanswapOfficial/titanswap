@@ -45,6 +45,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
 
     // info of lp pool
     mapping (address => PoolInfo) public poolInfo;
+    // lp of users
     mapping (address => mapping(address => UserInfo)) public userInfo;
 
     // add this function to receive eth
