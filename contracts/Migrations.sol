@@ -15,6 +15,7 @@ contract Migrations {
         _;
     }
 
+    // for migrate comtracts
     function setCompleted(uint completed) public restricted {
         last_completed_migration = completed;
     }
