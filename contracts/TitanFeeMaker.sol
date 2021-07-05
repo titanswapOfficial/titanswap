@@ -20,7 +20,7 @@ contract TitanFeeMaker is Ownable,ITitanFeeMaker {
     address public usdt;
     address public routerAddress;
 
-    // Bonus muliplier for early sushi makers.
+    // Bonus muliplier for early titan makers.
     uint256 public BONUS_MULTIPLIER = 100;
     // Bonus muliplier for early sushi makers.
     uint256 public constant BONUS_BASE_RATE = 100;
